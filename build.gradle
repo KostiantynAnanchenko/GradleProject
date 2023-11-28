@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'Tasks'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // https://mvnrepository.com/artifact/org.jsoup/jsoup
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.1'
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.1'
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register('task1') {
+    doLast {
+        println 'Executing task 1'
+    }
+}
+
+tasks.register('task2') {
+    doLast {
+        println 'Executing task 2'
+    }
+}
+
+task2.dependsOn task1
